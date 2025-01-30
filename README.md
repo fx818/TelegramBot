@@ -90,3 +90,9 @@ Uses gemini-1.5-pro for document analysis.
 Users can search for information via the bot.
 
 The bot will fetch summarized results and top links.
+
+### ✅ Sentiment Analysis
+
+Users can give a sentence and check for the sentiment of that sentence.
+
+'/sentiment your_sentence'.
