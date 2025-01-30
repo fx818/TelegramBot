@@ -9,7 +9,7 @@ This is a Telegram AI Chatbot powered by Google Gemini AI and MongoDB. It suppor
 ## 1️⃣ Clone the Repository
 
 ```
-git clone https://github.com/yourusername/TelegramBot.git
+git clone https://github.com/fx818/TelegramBot.git
 cd TelegramBot
 ```
 
