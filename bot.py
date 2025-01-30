@@ -160,34 +160,33 @@ def perform_search(message):
 
 
 
-# from nltk.sentiment import SentimentIntensityAnalyzer
-# import nltk
-# import telebot
+from nltk.sentiment import SentimentIntensityAnalyzer
+import nltk
+import telebot
 
-# nltk.download('vader_lexicon')
-# sia = SentimentIntensityAnalyzer()
+nltk.download('vader_lexicon')
+sia = SentimentIntensityAnalyzer()
 
-# # Function to analyze sentiment
-# def analyze_sentiment_nltk(text):
-#     sentiment = sia.polarity_scores(text)
-#     if sentiment["compound"] > 0:
-#         return "😊 Positive"
-#     elif sentiment["compound"] < 0:
-#         return "😠 Negative"
-#     else:
-#         return "😐 Neutral"
+# Function to analyze sentiment
+def analyze_sentiment_nltk(text):
+    sentiment = sia.polarity_scores(text)
+    if sentiment["compound"] > 0:
+        return "😊 Positive"
+    elif sentiment["compound"] < 0:
+        return "😠 Negative"
+    else:
+        return "😐 Neutral"
 
-# # Telegram command for sentiment analysis
-# @bot.message_handler(commands=['sentiment'])
-# def sentiment_command(message):
-#     text = message.text.replace("/sentiment", "").strip()
-#     if not text:
-#         bot.reply_to(message, "Please provide some text to analyze. Example: `/sentiment I love this bot!`")
-#         return
-#     sentiment_result = analyze_sentiment_nltk(text)
-#     bot.reply_to(message, f"Sentiment Analysis Result: {sentiment_result}")
+# Telegram command for sentiment analysis
+@bot.message_handler(commands=['sentiment'])
+def sentiment_command(message):
+    text = message.text.replace("/sentiment", "").strip()
+    if not text:
+        bot.reply_to(message, "Please provide some text to analyze. Example: `/sentiment I love this bot!`")
+        return
+    sentiment_result = analyze_sentiment_nltk(text)
+    bot.reply_to(message, f"Sentiment Analysis Result: {sentiment_result}")
 
-# bot.polling()
 
 
 
