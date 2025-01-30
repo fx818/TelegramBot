@@ -6,13 +6,6 @@ from pymongo import MongoClient
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from dotenv import load_dotenv
 
-# from urllib.parse import quote_plus
-# password = "@mongodb818@"  # Replace with your actual password
-# username
-# encoded_password = quote_plus(password)
-# username = quote_plus(username)
-
-# MONGO_URI="mongodb+srv://testingbyme818:nkQuDAVbz8PMcsuM@cluster0.esc3q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 # Load environment variables
 load_dotenv()
