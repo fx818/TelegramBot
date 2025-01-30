@@ -17,7 +17,11 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Initialize services
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
-client = MongoClient(MONGO_URI)
+client = MongoClient(
+    MONGO_URI, 
+    tls=True, 
+    tlsAllowInvalidCertificates=True
+)
 db = client["telegram_bot"]
 users_collection = db["users"]
 chats_collection = db["chats"]
@@ -57,7 +61,6 @@ def save_contact(message):
 def start(message):
     register_user(message)
 
-@bot.message_handler(func=lambda message: True)
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     chat_id = message.chat.id
@@ -154,6 +157,40 @@ def perform_search(message):
     query = message.text
     search_result = "Here are the top results for your query (dummy data)."
     bot.send_message(message.chat.id, search_result)
+
+
+
+# from nltk.sentiment import SentimentIntensityAnalyzer
+# import nltk
+# import telebot
+
+# nltk.download('vader_lexicon')
+# sia = SentimentIntensityAnalyzer()
+
+# # Function to analyze sentiment
+# def analyze_sentiment_nltk(text):
+#     sentiment = sia.polarity_scores(text)
+#     if sentiment["compound"] > 0:
+#         return "😊 Positive"
+#     elif sentiment["compound"] < 0:
+#         return "😠 Negative"
+#     else:
+#         return "😐 Neutral"
+
+# # Telegram command for sentiment analysis
+# @bot.message_handler(commands=['sentiment'])
+# def sentiment_command(message):
+#     text = message.text.replace("/sentiment", "").strip()
+#     if not text:
+#         bot.reply_to(message, "Please provide some text to analyze. Example: `/sentiment I love this bot!`")
+#         return
+#     sentiment_result = analyze_sentiment_nltk(text)
+#     bot.reply_to(message, f"Sentiment Analysis Result: {sentiment_result}")
+
+# bot.polling()
+
+
+
 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
